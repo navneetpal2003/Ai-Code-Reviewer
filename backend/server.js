@@ -1,17 +1,9 @@
 require('dotenv').config();
-const app = require('./src/app')
-const cors = require('cors');
-const express = require('express');
-const app = express();
+const app = require('./src/app'); // 1. Import the app you built in app.js
 
-// Allow requests from your Netlify frontend
-app.use(cors({
-    origin: 'https://codereviewerbyai.netlify.app', 
-    optionsSuccessStatus: 200
-}));
+// 2. Use the port Render gives us, or 3000 if on localhost
+const PORT = process.env.PORT || 3000;
 
-// Make sure your server listens on the port Render assigns
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
